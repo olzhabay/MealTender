@@ -3,5 +3,6 @@ from app import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^profile/$', views.profile, name='profile')
+    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^register/$', views.register, name='register'),
 ]
