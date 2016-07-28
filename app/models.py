@@ -12,6 +12,7 @@ class Person(models.Model):
     phone_number = models.IntegerField()
     address = models.ForeignKey('Address', null=False)
     restaurants = models.ForeignKey('Restaurant', null=False)
+    cart = models.ForeignKey('Cart')
 
     def __unicode__(self):
         return self.email
@@ -35,3 +36,8 @@ class Food(models.Model):
     servings = models.IntegerField()
     price = models.IntegerField()
     ingredients = models.CharField(max_length=250)
+
+
+class Cart(models.Model):
+    total_price = models.IntegerField()
+    list = models.ManyToManyField('Food')
