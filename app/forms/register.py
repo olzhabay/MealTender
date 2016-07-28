@@ -1,9 +1,8 @@
 from django import forms
-from app.models import User
+from app.models import Person
 
 
 class RegistrationForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput, label='Username')
     email = forms.EmailField(widget=forms.TextInput, label='Email')
     first_name = forms.CharField(widget=forms.TextInput, label='First Name')
     last_name = forms.CharField(widget=forms.TextInput, label='Last Name')
@@ -11,8 +10,8 @@ class RegistrationForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput, label='Password(again)')
 
     class Meta:
-        model = User
-        fields = ['email', 'password1', 'password2']
+        model = Person
+        fields = ['email', 'password1', 'password2', 'first_name', 'last_name']
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
@@ -23,9 +22,10 @@ class RegistrationForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
-        user.create_user(self.username, self.email, self.cleaned_data['password1'])
         user.first_name = self.first_name
         user.last_name = self.username
+        user.email = self.email
+        user.password = self.password1
         if commit:
             user.save()
         return user

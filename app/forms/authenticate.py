@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 
 
 class AuthenticationForm(forms.Form):
-    username = forms.EmailField(widget=forms.TextInput)
+    email = forms.EmailField(widget=forms.TextInput)
     password = forms.CharField(widget=forms.PasswordInput)
 
     def authenticate(self, request):
