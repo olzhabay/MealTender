@@ -2,8 +2,11 @@ from __future__ import print_function
 import datetime
 
 import requests
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, RequestContext, render_to_response
 from app.forms.user_forms import UserForm, ProfileForm
+from django.contrib.auth.models import User
 
 
 # general view
@@ -12,11 +15,23 @@ def index(request):
     return render(request, "app/index.html", {"today": today})
 
 
-def login(request):
-    username = password = ''
-    if request.POST:
+def login_user(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                return HttpResponse("Account disabled")
+        else:
+            print("Invalid login details: {0} {1}".format(username, password))
+            return HttpResponse("Invalid login details")
+    else:
+        return render_to_response('app/login.html', {}, context)
 
 
 def profile(request):
@@ -48,7 +63,7 @@ def register(request):
         profile_from = ProfileForm()
 
     return render_to_response('app/register.html',
-                              {'user_form':user_form, 'profile_form':profile_from, 'registered':registered},
+                              {'user_form': user_form, 'profile_form': profile_from, 'registered': registered},
                               context)
 
 
