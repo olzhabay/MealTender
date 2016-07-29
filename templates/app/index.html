@@ -1,7 +1,14 @@
 {% extends "app/main_template.html" %}
 {% block title %} Index page {% endblock %}
 {% block content %}
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-Hello today is {{ today }}
+    {% if user.is_authenticated %}
+        <h1>Hello {{ user.username }}!</h1>
+        <a href="/profile/">Profile</a><br />
+        <a href="/logout/">Logout</a><br />
+    {% else %}
+        <h1>Hello user!</h1>
+        <a href="/register/">Register Here</a><br />
+        <a href="/login/">Login</a><br />
+    {% endif %}
+    Today is {{ today }}
 {% endblock %}

@@ -2,7 +2,8 @@ from __future__ import print_function
 import datetime
 
 import requests
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, RequestContext, render_to_response
 from app.forms.user_forms import UserForm, ProfileForm
@@ -32,6 +33,11 @@ def login_user(request):
             return HttpResponse("Invalid login details")
     else:
         return render_to_response('app/login.html', {}, context)
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect('/app/')
 
 
 def profile(request):
