@@ -9,18 +9,15 @@
 
         {% if registered %}
         App says: <strong>thank you for registering!</strong>
-        <a href="/rango/">Return to the homepage.</a><br />
+        <a href="/">Return to the homepage.</a><br />
         {% else %}
         App says: <strong>register here!</strong><br />
 
-        <form id="user_form" method="post" action="/app/register/"
+        <form id="user_form" method="post" action="/register/"
                 enctype="multipart/form-data">
 
             {% csrf_token %}
 
-            <!-- Display each form. The as_p method wraps each element in a paragraph
-                 (<p>) element. This ensures each element appears on a new line,
-                 making everything look neater. -->
             {{ user_form.as_p }}
             {{ profile_form.as_p }}
 

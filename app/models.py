@@ -6,15 +6,9 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
-    first_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=25)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
     phone_number = models.IntegerField()
-    address = models.ForeignKey('Address')
-    restaurants = models.ForeignKey('Restaurant')
-    cart = models.ManyToManyField('Food')
-    orders = models.ManyToManyField('Order')
+    address = models.ForeignKey('Address', blank=True, null=True)
+    restaurants = models.ForeignKey('Restaurant', blank=True, null=True)
 
     def __unicode__(self):
         return self.user.username
@@ -23,8 +17,8 @@ class Profile(models.Model):
 class Address(models.Model):
     street = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=10)
-    city = models.CharField(max_length=20)
-    country = models.CharField(max_length=20)
+    city = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
 
 
 class Restaurant(models.Model):

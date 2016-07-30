@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, RequestContext, render_to_response
 from app.forms.user_forms import UserForm, ProfileForm
+from app.models import Profile
 from django.contrib.auth.models import User
 
 
@@ -34,16 +35,26 @@ def login_user(request):
     else:
         return render_to_response('app/login.html', {}, context)
 
+
 @login_required
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('/app/')
+    request.session.flush()
+    return HttpResponseRedirect('/')
 
 
+@login_required
 def profile(request):
-    req = requests.get('https://api.github.com/users/olzhabay')
-    content = req.text
-    return HttpResponse(content)
+    context = RequestContext(request)
+    user = User.objects.get(username=request.user)
+    try:
+        profile = Profile.objects.get(user=user)
+    except:
+        profile = None
+
+    return render_to_response('app/profile.html',
+                              {'user': user, 'profile': profile},
+                              context)
 
 
 def register(request):
@@ -58,8 +69,8 @@ def register(request):
             user.set_password(user.password)
             user.save()
             # saving users profile
-            profile = profile_from.save()
-            profile.user = user
+            profile = profile_from.save(commit=False)
+            profile.user = User.objects.get(username=user.username)
             profile.save()
             registered = True
         else:

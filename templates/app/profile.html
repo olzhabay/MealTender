@@ -1,0 +1,16 @@
+{% extends "app/main_template.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div>
+    <h1> Profile </h1>
+    <p>Username: {{ user.username }}</p>
+    <P>First Name: {{ user.first_name }}</P>
+    <P>Last Name: {{ user.last_name }}</P>
+    <P>Email: {{ user.email }}</P>
+    {% if profile %}
+        <p> Phone: {{ profile.phone_number }} </p>
+    {% endif %}
+</div>
+{% endblock %}
