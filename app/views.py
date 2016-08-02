@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, RequestContext, render_to_response
 from app.forms.user_forms import UserForm, ProfileForm
-from app.models import Profile
+from app.models import Profile, Food, Restaurant
 from django.contrib.auth.models import User
+from carton.cart import Cart
 
 
 # general view
@@ -98,21 +99,41 @@ def view_orders(request):
 
 
 # client view
-def view_restaurants(request):
+def restaurant_list(request):
+    context = RequestContext(request)
+    restaurants = Restaurant.objects.all()
+    return render_to_response('app/restaurant_list.html', {'restaurants': restaurants}, context)
+
+
+def restaurant_menu(request):
+    context = RequestContext(request)
+    menu = Restaurant.objects.get()
     return HttpResponse()
 
 
-def view_menu(request):
-    return HttpResponse()
-
-
-def view_food(request):
-    return HttpResponse()
+def food_list(request):
+    context = RequestContext(request)
+    foods = Food.objects.all()
+    return render_to_response('app/food_list.html', {'foods': foods}, context)
 
 
 def make_order(request):
     return HttpResponse()
 
 
-def view_cart(request):
-    return HttpResponse()
+def show_cart(request):
+    return render(request, 'app/show_cart.html')
+
+
+def add_to_cart(request):
+    cart = Cart(request.session)
+    food = Food.objects.get(id=request.GET.get('food_id'))
+    cart.add(food, price=food.price)
+    return HttpResponse("Added")
+
+
+def remove_from_cart(request):
+    cart = Cart(request.session)
+    food = Food.objects.get(id=request.GET.get('food_id'))
+    cart.remove(food)
+    return HttpResponse("Removed")

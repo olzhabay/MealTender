@@ -1,0 +1,15 @@
+{% extends "app/main_template.html" %}
+{% block title %} List of restaurants {% endblock %}
+{% block content %}
+    <div>Name, address</div>
+    {% for restaurant in restaurants %}
+        <div>
+        {{ restaurant.name }}
+        {{ restaurant.address.street }}
+        {{ restaurant.address.zip_code }}
+        {{ restaurant.address.city }}
+        {{ restaurant.address.country }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

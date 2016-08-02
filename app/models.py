@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User)
     phone_number = models.IntegerField()
-    address = models.ForeignKey('Address', blank=True, null=True)
     restaurants = models.ForeignKey('Restaurant', blank=True, null=True)
 
     def __unicode__(self):
