@@ -6,8 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, RequestContext, render_to_response
-from app.forms.user_forms import UserForm, ProfileForm
-from app.models import Profile, Food, Restaurant
+from app.forms.user_forms import UserForm, ProfileForm, AddressForm, UserFormEdit
+from app.models import Profile, Food, Restaurant, Address
 from django.contrib.auth.models import User
 from carton.cart import Cart
 
@@ -52,9 +52,48 @@ def profile(request):
         profile = Profile.objects.get(user=user)
     except:
         profile = None
+    try:
+        address = Address.objects.get(pk=profile.address_id)
+    except:
+        address = None
 
     return render_to_response('app/profile.html',
-                              {'user': user, 'profile': profile},
+                              {'user': user, 'profile': profile, 'address': address},
+                              context)
+
+
+@login_required
+def edit_profile(request):
+    context = RequestContext(request)
+    edited = False
+    user = User.objects.get(username=request.user)
+    try:
+        profile = Profile.objects.get(user=user)
+    except:
+        profile = None
+    try:
+        address = Address.objects.get(pk=profile.address_id)
+    except:
+        address = None
+    user_form = UserFormEdit(instance=user)
+    profile_form = ProfileForm(instance=profile)
+    address_form = AddressForm(instance=address)
+    if request.method == 'POST':
+        user_form = UserFormEdit(data=request.POST, instance=user)
+        profile_form = ProfileForm(data=request.POST, instance=profile)
+        address_form = AddressForm(data=request.POST, instance=address)
+        if user_form.is_valid() and profile_form.is_valid() and address_form.is_valid():
+            user = user_form.save()
+            user.save()
+            address = address_form.save()
+            address.save()
+            profile = profile_form.save(commit=False)
+            profile.user = User.objects.get(pk=user.pk)
+            profile.address = Address.objects.get(pk=address.pk)
+            profile.save()
+            edited = True
+    return render_to_response('app/profile_edit.html',
+                              {'user_form': user_form, 'profile_form': profile_form, 'address_form': address_form, 'edited': edited},
                               context)
 
 
@@ -71,7 +110,7 @@ def register(request):
             user.save()
             # saving users profile
             profile = profile_from.save(commit=False)
-            profile.user = User.objects.get(username=user.username)
+            profile.user = User.objects.get(pk=user.pk)
             profile.save()
             registered = True
         else:

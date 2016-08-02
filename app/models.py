@@ -8,6 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     phone_number = models.IntegerField()
     restaurants = models.ForeignKey('Restaurant', blank=True, null=True)
+    address = models.ForeignKey('Address', blank=True, null=True)
 
     def __unicode__(self):
         return self.user.username

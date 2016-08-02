@@ -1,0 +1,23 @@
+{% extends "app/main_template.html" %}
+{% block title %} Edit Profile {% endblock %}
+{% block content %}
+    <div><a href="/">Return to the homepage.</a></div>
+    <h1>Edit Profile</h1>
+    {% if edited %}
+    <div>Profile edited</div>
+    {% else %}
+    <form id="user_form" method="post" action="/profile/edit/"
+            enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        {{ address_form.as_p }}
+
+        <!-- Provide a button to click to submit the form. -->
+        <input type="submit" name="submit" value="Edit" />
+    </form>
+    {% endif %}
+
+{% endblock %}

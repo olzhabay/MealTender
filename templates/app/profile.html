@@ -3,14 +3,49 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<div>
+    <div><a href="/">Return to the homepage.</a></div>
+    <div><a href='/profile/edit/'>Edit profile</a> </div>
     <h1> Profile </h1>
-    <p>Username: {{ user.username }}</p>
-    <P>First Name: {{ user.first_name }}</P>
-    <P>Last Name: {{ user.last_name }}</P>
-    <P>Email: {{ user.email }}</P>
-    {% if profile %}
-        <p>Phone: {{ profile.phone_number }} </p>
-    {% endif %}
-</div>
+    <table>
+        <tr>
+            <td>Username: </td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td>First Name: </td>
+            <td>{{ user.first_name }} </td>
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td>{{ user.email }}</td>
+        </tr>
+        {% if profile %}
+        <tr>
+            <td>Phone: </td>
+            <td>{{ profile.phone_number }}</td>
+        </tr>
+        {% endif %}
+        {% if address %}
+        <tr>
+            <td>Street: </td>
+            <td>{{ address.street }}</td>
+        </tr>
+        <tr>
+            <td>Zip: </td>
+            <td>{{ address.zip_code }}</td>
+        </tr>
+        <tr>
+            <td>City: </td>
+            <td>{{ address.city }}</td>
+        </tr>
+        <tr>
+            <td>Country: </td>
+            <td>{{ address.country }}</td>
+        </tr>
+        {% endif %}
+    </table>
 {% endblock %}
