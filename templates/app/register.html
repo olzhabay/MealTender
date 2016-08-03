@@ -1,25 +1,26 @@
 {% extends "app/main_template.html" %}
 {% block title %} Registration {% endblock %}
 {% block content %}
-    <div><a href="/">Return to the homepage.</a></div>
-    <h1>Register with App</h1>
+
+    <div class="container">
 
     {% if registered %}
-    App says: <strong>thank you for registering!</strong>
+    <strong>Thank you for registering.</strong>
     <a href="/">Return to the homepage.</a><br />
     {% else %}
-    App says: <strong>register here!</strong><br />
-
     <form id="user_form" method="post" action="/register/"
             enctype="multipart/form-data">
-
+        <h2 class="form-signin-heading">Please sign up</h2>
         {% csrf_token %}
 
         {{ user_form.as_p }}
         {{ profile_form.as_p }}
 
-        <!-- Provide a button to click to submit the form. -->
-        <input type="submit" name="submit" value="Register" />
-    </form>
-    {% endif %}
+        <br />
+            <!-- Provide a button to click to submit the form. -->
+        <input class="btn btn-primary" type="submit" name="submit" value="Register"/>
+
+     </form>
+     {% endif %}
+    </div>
 {% endblock %}
