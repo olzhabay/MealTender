@@ -1,5 +1,5 @@
 {% extends "app/main_template.html" %}
-{% block title %} {% endblock %}
+{% block title %} Cart {% endblock %}
 {% block content %}
     <div><a href="/">Return to the homepage.</a></div>
     {% load carton_tags %}
@@ -11,8 +11,4 @@
         {{ item.subtotal }}
     {% endfor %}
 
-    You can also use this convinent shortcut:
-    {% for product in cart.products %}
-        {{ product.name }}
-    {% endfor %}
 {% endblock %}

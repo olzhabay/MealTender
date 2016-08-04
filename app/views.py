@@ -93,7 +93,8 @@ def edit_profile(request):
             profile.save()
             edited = True
     return render_to_response('app/profile_edit.html',
-                              {'user_form': user_form, 'profile_form': profile_form, 'address_form': address_form, 'edited': edited},
+                              {'user_form': user_form, 'profile_form': profile_form, 'address_form': address_form,
+                               'edited': edited},
                               context)
 
 
@@ -152,7 +153,10 @@ def restaurant_menu(request):
 
 def food_list(request, value=None):
     context = RequestContext(request)
-    foods = Food.objects.filter(restaurant=value)
+    if value is None:
+        foods = Food.objects.all()
+    else:
+        foods = Food.objects.filter(restaurant=value)
     return render_to_response('app/food_list.html', {'foods': foods}, context)
 
 

@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CART_PRODUCT_MODEL = 'app.models.Food'
 
 # Application definition
 
