@@ -10,7 +10,9 @@ urlpatterns = [
     url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^add/$', views.add_to_cart, name='shopping-cart-add'),
     url(r'^remove/$', views.remove_from_cart, name='shopping-cart-remove'),
-    url(r'^show_cart/$', views.show_cart, name='shopping-cart-show'),
+    url(r'^cart/show/$', views.show_cart, name='shopping-cart-show'),
+    url(r'^cart/add/$', views.add_to_cart, name='add_to_cart'),
+    url(r'^food_list/$', views.food_list, name='food_list'),
     url(r'^food_list/(\d+)/$', views.food_list, name='food_list'),
     url(r'^restaurant_list/$', views.restaurant_list, name='restaurant_list'),
 ]

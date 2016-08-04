@@ -15,6 +15,7 @@
             <th>{{ food.servings }}</th>
             <th>{{ food.price }}</th>
             <th>{{ food.ingredients }}</th>
+            <th><a href="/cart/add/?food_id={{ food.pk }}">Add</a> </th>
         </tr>
     {% endfor %}
     </table>
