@@ -150,9 +150,9 @@ def restaurant_menu(request):
     return HttpResponse()
 
 
-def food_list(request):
+def food_list(request, value=None):
     context = RequestContext(request)
-    foods = Food.objects.all()
+    foods = Food.objects.filter(restaurant=value)
     return render_to_response('app/food_list.html', {'foods': foods}, context)
 
 

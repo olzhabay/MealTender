@@ -16,6 +16,9 @@
                 {{ restaurant.address.city }}
                 {{ restaurant.address.country }}
             </th>
+            <th>
+                <a href="{% url 'food_list' restaurant.pk %}">See Menu</a>
+            </th>
         </tr>
     {% endfor %}
     </table>
