@@ -4,7 +4,6 @@
     left: -44px;
     height: 10px;
     width: 13.5%;
-
 }
 
 .search-page {
@@ -17,6 +16,7 @@
     height: 500px;
     text-shadow: 0.25px 0.25px 0.25px #000000;
     line-height: 0.0;
+    margin-top: -10px;
 }
 
 .search-page h2 {

@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from app import views
 
 urlpatterns = [
@@ -15,4 +17,4 @@ urlpatterns = [
     url(r'^food_list/$', views.food_list, name='food_list'),
     url(r'^food_list/(\d+)/$', views.food_list, name='food_list'),
     url(r'^restaurant_list/$', views.restaurant_list, name='restaurant_list'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
