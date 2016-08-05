@@ -1,17 +1,38 @@
 {% extends "app/main_template.html" %}
+
 {% block title %} Index page {% endblock %}
+
+{% load static %}
+
+<body>
 {% block content %}
-    {% if user.is_authenticated %}
-        <h1>Hello {{ user.username }}!</h1>
-        <p><a href="/profile/">Profile</a></p>
-        <p><a href="/logout/">Logout</a></p>
-    {% else %}
-        <h1>Hello user!</h1>
-        <p><a href="/register/">Register Here</a></p>
-        <p><a href="/login/">Login</a></p>
-    {% endif %}
-    <p><a href="/cart/show/">Show cart</a></p>
-    <P><a href="/food_list">Food list</a></P>
-    <P><a href="/restaurant_list">Restaurant list</a></P>
-    Today is {{ today }}
+    <section class = "search-page">
+        <div class = "container">
+         <div class="row text-center">
+              <h1 class="text-center">Korean food for foreigners</h1>
+              <h4 class="text-center"> Explore and order korean food with us </h4>
+              <a class="btn btn-primary" href="#">Download our app</a>
+
+              <b class="btn btn-primary" href="#">Learn More</b>
+          </div>
+        </div>
+
+    </section>
+
+    <div class="hero-unit">
+        <h2>About us</h2>
+        <p> <strong>Meal.Tender</strong> is the only delivery food app focused on foreigners in South Korea.
+            Try out Meal.Tender to get to know about korean food ingredients and get it
+          delivered within a click of a button!</p>
+    </div>
+
 {% endblock %}
+
+</body>
+
+</html>
+
+
+
+
+
