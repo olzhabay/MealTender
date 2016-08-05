@@ -1,0 +1,32 @@
+
+.logo {
+    position: relative;
+    left: -44px;
+    height: 10px;
+    width: 13.5%;
+
+}
+
+.search-page {
+    border:1px solid transparent;
+    display: flex;
+    align-items: center;
+    background-image: url('/static/img/Background_picture.png');
+    background-size: cover;
+    color: #ffffff;
+    height: 500px;
+    text-shadow: 0.25px 0.25px 0.25px #000000;
+    line-height: 0.0;
+}
+
+.search-page h2 {
+  font-size: 60px;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+}
+
+.search-page h3 {
+  margin: 0 0 20px;
+  color: #fff;
+}
