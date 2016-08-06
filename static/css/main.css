@@ -30,3 +30,122 @@
   margin: 0 0 20px;
   color: #fff;
 }
+footer nav {
+  background-color: #FFF;
+}
+
+footer nav li {
+  margin: 0;
+  padding: 0 10px;
+  display: inline;
+}
+
+.contact-btn {
+  float: right;
+}
+
+.contact-btn a {
+  margin-right: 30px;
+  padding: 8px 18px;
+  color: #338C47;
+  border: 1px solid #338C47;
+}
+
+.contact-btn a:active {
+  position: relative;
+  bottom: 2px;
+}
+
+input[name=address] {
+      width: 446px;
+      border: 2.5px solid #338C47;
+      background-color: rgba(255, 255, 255, 0.82);
+}
+
+.address-type p {
+    text-align: left;
+    width: 463px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+
+    align-self: flex-start;
+    color: inherit;
+    opacity: .5;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.select-restaurant {
+    background-color: #338C47;
+    border-color: #338C47;
+    border-radius: 4px;
+    background-image: none;
+    margin-top: 20px;
+    color: #FFFFFF;
+    text-shadow: none;
+    width: 200px;
+    height: 40px;
+}
+
+.select-food {
+    border-radius: 4px;
+    background-color: #338C47;
+    border-color: #338C47;
+    background-image: none;
+    margin-top: 10px;
+    color: #FFFFFF;
+    text-shadow: none;
+    width: 200px;
+    height: 40px;
+}
+
+section#Intro {
+    height: 150px;
+}
+
+.search-page h4 {
+    font-size: 15px;
+}
+
+.LearnMore {
+    margin-top: 60px;
+    float: left;
+    width: 50%;
+}
+
+.LearnMore button {
+    width: 200px;
+    margin-right: 50px;
+    float: right;
+
+    background-color: #FFFFFF;
+    border-color: #338C47;
+    border-radius: 4px;
+    background-image: none;
+    color: #338C47;
+    text-shadow: none;
+    width: 200px;
+    height: 44px;
+
+}
+.Download {
+    margin-top: 60px;
+    float: right;
+    width: 50%;
+}
+
+.Download button {
+    width: 200px;
+    margin-left: 50px;
+    float: left;
+    background-color: #FFFFFF;
+    border-color: #338C47;
+    border-radius: 4px;
+    background-image: none;
+    color: #338C47;
+    text-shadow: none;
+    width: 200px;
+    height: 44px;
+}
