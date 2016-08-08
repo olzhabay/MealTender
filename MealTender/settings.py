@@ -131,3 +131,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '/static/'),
     "static"
 ]
+
+GOOGLE_API_KEY = "AIzaSyDXlqoqeslLYyQUzNkWvGf2awyTdRtOz0Y"

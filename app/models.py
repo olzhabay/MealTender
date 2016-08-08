@@ -1,7 +1,9 @@
 from __future__ import unicode_literals
 
+import urllib
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Profile(models.Model):
@@ -21,6 +23,26 @@ class Address(models.Model):
     lat = models.FloatField(default=0.0)
     lng = models.FloatField(default=0.0)
 
+    def save(self):
+        location = "%s, %s, %s, %s" % (self.street, self.city, self.zip_code, self.zip_code)
+        if not self.lat or not self.lng:
+            result = self.geocode(location)
+            result = result.split(',')
+            self.lat = result[0]
+            self.lng = result[1]
+
+    def geocode(self, location):
+        output = "csv"
+        location = urllib.quote_plus(location)
+        request = "http://maps.google.com/maps/geo?q=%s&output=%s&key=%s" % \
+                  (location, output, settings.GOOGLE_API_KEY)
+        data = request.urlopen(request).read()
+        dlist = data.split(',')
+        if (dlist[0]) == '200':
+            return "%s,%s" % (dlist[2], dlist[3])
+        else:
+            return ','
+
     def __unicode__(self):
         return str(self.lat) + str(self.lng)
 
@@ -29,6 +51,7 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     address = models.ForeignKey('Address', blank=True, null=True)
     menu = models.ManyToManyField('Food')
+    image = models.ImageField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
