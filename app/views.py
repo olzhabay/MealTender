@@ -139,19 +139,24 @@ def view_orders(request):
 
 
 # client view
-def restaurant_list(request):
+def search_by_address(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
+        if 'select-restaurant' in request.POST:
+            restaurants = Restaurant.objects.all()
+            return render_to_response('app/restaurant_list.html', {'restaurants': restaurants}, context)
+        else:
+            foods = Food.objects.all()
+            return render_to_response('app/food_list.html', {'foods': foods}, context)
+
+
+def restaurant_list(request, address=None):
     context = RequestContext(request)
     restaurants = Restaurant.objects.all()
     return render_to_response('app/restaurant_list.html', {'restaurants': restaurants}, context)
 
 
-def restaurant_menu(request):
-    context = RequestContext(request)
-    menu = Restaurant.objects.get()
-    return HttpResponse()
-
-
-def food_list(request, value=None):
+def food_list(request, value=None, address=None):
     context = RequestContext(request)
     if value is None:
         foods = Food.objects.all()

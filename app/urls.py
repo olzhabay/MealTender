@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^food_list/$', views.food_list, name='food_list'),
     url(r'^food_list/(\d+)/$', views.food_list, name='food_list'),
     url(r'^restaurant_list/$', views.restaurant_list, name='restaurant_list'),
+    url(r'^search_by_address/$', views.search_by_address, name='search_by_address')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
