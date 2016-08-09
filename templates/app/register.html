@@ -1,26 +1,30 @@
 {% extends "app/main_template.html" %}
+{% load static %}
 {% block title %} Registration {% endblock %}
-{% block content %}
 
-    <div class="container">
-
-    {% if registered %}
-    <strong>Thank you for registering.</strong>
-    <a href="/">Return to the homepage.</a><br />
-    {% else %}
-    <form id="user_form" method="post" action="/register/"
-            enctype="multipart/form-data">
-        <h2 class="form-signin-heading">Please sign up</h2>
-        {% csrf_token %}
-
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-
-        <br />
-            <!-- Provide a button to click to submit the form. -->
-        <input class="btn btn-primary" type="submit" name="submit" value="Register"/>
-
-     </form>
-     {% endif %}
-    </div>
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/register.css">
 {% endblock %}
+
+<body>
+{% block content %}
+    <section class = "register-page">
+        <div class="container">
+            <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
+                <h2 class="form-signin-heading">Create account
+                </h2>
+
+                {% csrf_token %}
+
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+
+                <br />
+
+                <button type="submit" name="submit" class="create-account">Create my account</button>
+
+            </form>
+        </div>
+    </section>
+{% endblock %}
+</body>

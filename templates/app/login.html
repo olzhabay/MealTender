@@ -1,26 +1,31 @@
 {% extends 'app/main_template.html' %}
+{% load static %}
 {% block title %} Login {% endblock %}
 
-
-{% block content %}
-    <div class="container">
-
-     <form id="login_form" method="post" action="/login/">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        {% csrf_token %}
-        {% if bad_details %}
-        <p><strong>Your username and/or password were incorrect!</strong></p>
-        {% elif disabled_account %}
-        <p><strong>Your account is currently disabled; we can't log you in!</strong></p>
-        {% endif %}
-
-        Username: <input type="text" name="username" value="" size="50" />
-        <br />
-        Password: <input type="password" name="password" value="" size="50" />
-        <br />
-
-        <button class="btn btn-primary" type="submit"> Sign in </button>
-    </form>
-    </div>
-
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
 {% endblock %}
+
+<body>
+{% block content %}
+    <section class = "login-page">
+        <div class="container">
+             <form id="login_form" method="post" action="/login/">
+                <h2 class="form-signin-heading">Sign in</h2>
+                    {% csrf_token %}
+                    {% if bad_details %}
+                    <p><strong>Your username and/or password were incorrect!</strong></p>
+                    {% elif disabled_account %}
+                    <p><strong>Your account is currently disabled; we can't log you in!</strong></p>
+                    {% endif %}
+
+                    Username: <input type="text" name="username" value="" size="50" />
+                    <br />
+                    Password: <input type="password" name="password" value="" size="50" />
+                    <br />
+                    <button type="submit" name="submit" class="sign-in">Sign in</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+</body>

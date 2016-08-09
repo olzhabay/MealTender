@@ -10,6 +10,9 @@
         <link href="{% static '/static/css/bootstrap-responsive.css' %}" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 
+        {% block head %}
+
+        {% endblock %}
 
         <title>MealTender - {% block title %}Eat Korean Food Selectively!{% endblock %}</title>
 
@@ -38,22 +41,25 @@
        </div>
       </div>
     </div>
-    {% block content %}
-    {% endblock %}
+    <div id="content-container">
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
 
     <script src="{% static 'js/jquery-3.1.0.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/mealtender-ajax.js' %}"></script>
-    </body>
 
     <footer>
-        <div class="contact-btn"><a>Contact</a>
-        </div>
 
-      <div class="container">
-         <p>&copy; MealTender: Eat Korean Food Selectively, 2016</p>
-      </div>
+             <div class="contact-btn"><a>Contact</a> </div>
+
+             <div class="footer"> &copy; MealTender: Explore Korean Food Selectively, 2016 </div>
 
     </footer>
 
+    </body>
 </html>

@@ -1,0 +1,57 @@
+
+body {
+    background-color: #f7f7f7;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding-bottom: 0;
+    //padding-top: 0;
+}
+
+.register-page {
+    border-radius: 3px;
+    max-width: 380px;
+    margin: 30px auto;
+    width: 400px;
+    background-color: #fff;
+    padding: 24px;
+    white-space: nowrap;
+    letter-spacing: .015625em;
+    box-sizing: inherit;
+}
+
+.register-page div.container {
+    width: 100%;
+}
+
+.register-page h2 {
+    text-align: left;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #2e343b;
+    margin-bottom: 5px;
+}
+
+.register-page button {
+
+    width: 100%;
+}
+
+.register-page p span {
+    position: relative;
+    left: -223px;
+    top: 20px;
+    color: #7e7c7c;
+    font-size: 10px;
+    -webkit-font-smoothing: antialiased
+}
+
+.create-account {
+    border-radius: 4px;
+    background-color: #338C47;
+    border-color: #338C47;
+    background-image: none;
+    margin-top: 30px;
+    color: #FFFFFF;
+    text-shadow: none;
+    width: 200px;
+    height: 40px;
+}

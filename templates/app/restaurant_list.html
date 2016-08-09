@@ -1,26 +1,33 @@
 {% extends "app/main_template.html" %}
+{% load static %}
 {% block title %} List of restaurants {% endblock %}
-{% block content %}
-    <div><a href="/">Return to the homepage.</a></div>
-    <table style="border: medium; width: 100%">
-    <tr>
-        <th>Name</th>
-        <th>Address</th>
-    </tr>
-    {% for restaurant in restaurants %}
-        <tr>
-            <th>{{ restaurant.name }}</th>
-            <th>
-                {{ restaurant.address.street }}
-                {{ restaurant.address.zip_code }}
-                {{ restaurant.address.city }}
-                {{ restaurant.address.country }}
-            </th>
-            <th>
-                <a href="{% url 'food_list' restaurant.pk %}">See Menu</a>
-            </th>
-        </tr>
-    {% endfor %}
-    </table>
 
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/restaurant-list.css">
 {% endblock %}
+
+<body>
+    {% block content %}
+
+        <table style="border: medium; width: 100%">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+
+        {% for restaurant in restaurants %}
+            <tr>
+                <th>{{ restaurant.name }}</th>
+                <th>
+                    {{ restaurant.address.street }}
+                    {{ restaurant.address.zip_code }}
+                </th>
+                <th>
+                    <a href="{% url 'food_list' restaurant.pk %}">See Menu</a>
+                </th>
+            </tr>
+        {% endfor %}
+
+
+    {% endblock %}
+</body>
