@@ -139,7 +139,7 @@ def view_orders(request):
 
 
 # client view
-def search_by_address(request):
+def search(request):
     context = RequestContext(request)
     if request.method == 'POST':
         if 'select-restaurant' in request.POST:
