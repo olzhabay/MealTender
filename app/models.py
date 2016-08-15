@@ -20,8 +20,8 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=10)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    lat = models.FloatField(default=0.0)
-    lng = models.FloatField(default=0.0)
+    lat = models.FloatField(editable=False)
+    lng = models.FloatField(editable=False)
 
     def save(self):
         location = "%s, %s, %s, %s" % (self.street, self.city, self.zip_code, self.zip_code)
@@ -30,6 +30,7 @@ class Address(models.Model):
             result = result.split(',')
             self.lat = result[0]
             self.lng = result[1]
+        super(Address, self).save()
 
     def geocode(self, location):
         output = "csv"
