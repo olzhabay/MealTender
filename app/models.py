@@ -37,7 +37,7 @@ class Address(models.Model):
         location = urllib.quote_plus(location)
         request = "http://maps.google.com/maps/geo?q=%s&output=%s&key=%s" % \
                   (location, output, settings.GOOGLE_API_KEY)
-        data = request.urlopen(request).read()
+        data = urllib.urlopen(request).read()
         dlist = data.split(',')
         if (dlist[0]) == '200':
             return "%s,%s" % (dlist[2], dlist[3])
