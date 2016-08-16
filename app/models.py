@@ -68,6 +68,7 @@ class Food(models.Model):
     is_beef = models.BooleanField(default=False)
     is_pork = models.BooleanField(default=False)
     is_fish = models.BooleanField(default=False)
+    is_chicken = models.BooleanField(default=False)
     is_halal = models.BooleanField(default=False)
     is_vegetarian = models.BooleanField(default=False)
     servings = models.IntegerField(default=1)
