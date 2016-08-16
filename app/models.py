@@ -57,6 +57,7 @@ class Food(models.Model):
     is_soup = models.BooleanField(default=False)
     is_bibimbab = models.BooleanField(default=False)
     is_pizza = models.BooleanField(default=False)
+    is_tteokbokki = models.BooleanField(default=False)
     is_beef = models.BooleanField(default=False)
     is_pork = models.BooleanField(default=False)
     is_fish = models.BooleanField(default=False)
