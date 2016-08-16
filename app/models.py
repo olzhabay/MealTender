@@ -1,10 +1,11 @@
 from __future__ import unicode_literals
 
-import urllib
+import json as jsonlib
+import urllib2
+from django.core.serializers import json
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
-
+from MealTender.settings import GOOGLE_API_KEY
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
@@ -24,28 +25,19 @@ class Address(models.Model):
     lng = models.FloatField(editable=False)
 
     def save(self):
-        location = "%s, %s, %s, %s" % (self.street, self.city, self.zip_code, self.zip_code)
+        location = '+'.join(filter(None, (self.street, self.city, self.country)))
+        location = location.replace(" ", "+")
         if not self.lat or not self.lng:
-            result = self.geocode(location)
-            result = result.split(',')
-            self.lat = result[0]
-            self.lng = result[1]
+            self.geocode(location)
         super(Address, self).save()
 
     def geocode(self, location):
-        output = "csv"
-        location = urllib.quote_plus(location)
-        request = "http://maps.google.com/maps/geo?q=%s&output=%s&key=%s" % \
-                  (location, output, settings.GOOGLE_API_KEY)
-        data = urllib.urlopen(request).read()
-        dlist = data.split(',')
-        if (dlist[0]) == '200':
-            return "%s,%s" % (dlist[2], dlist[3])
-        else:
-            return ','
-
-    def __unicode__(self):
-        return str(self.lat) + str(self.lng)
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s" % (location, GOOGLE_API_KEY)
+        response = urllib2.urlopen(url)
+        data = jsonlib.load(response)
+        if data['status'] == 'OK':
+            self.lat = data['results'][0]['geometry']['location']['lat']
+            self.lng = data['results'][0]['geometry']['location']['lng']
 
 
 class Restaurant(models.Model):
