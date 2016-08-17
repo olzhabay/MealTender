@@ -1,19 +1,78 @@
+
 {% extends "app/main_template.html" %}
 {% load static %}
 {% block title %} List of restaurants {% endblock %}
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="/static/css/restaurant-list.css">
+    <script src="{% static 'js/jquery-3.1.0.js' %}"></script>
+
+    <script
+            type='text/javascript' src="/static/js/restaurant-list.js">
+    </script>
+
 {% endblock %}
 
 <body>
-    {% block content %}
+{% block content %}
 
-        <table style="border: medium; width: 100%">
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-        </tr>
+    <section id="category">
+                <div class="beef" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/beef.png"/>
+                    <a>Beef</a>
+                </div>
+                <div class="chicken" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/chicken.png"/>
+                    <a>Chicken</a>
+                </div>
+                <div class="bibimbab" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/bibimbab.png"/>
+                    <a>Bibimbab</a>
+                </div>
+
+                <div class="dduckbokgi" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/dduckbokgi.png"/>
+                    <a>Dduckbokgi</a>
+                </div>
+                <div class="fish" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/fish.png"/>
+                    <a>Fish</a>
+                </div>
+                <div class="HALAL" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/HALAL.png"/>
+                    <a>Halal</a>
+                </div>
+                <div class="noodle" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/Korean%20noodle%20.png"/>
+                    <a>Noddles</a>
+                </div>
+                <div class="pizza" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/korean%20pizza.png"/>
+                    <a>Pizza</a>
+                </div>
+                <div class="meat" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/meat.png"/>
+                    <a>Meat</a>
+                </div>
+                <div class="rice" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/rice.png"/>
+                    <a>Rice</a>
+                </div>
+                <div class="soup" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/soup.png"/>
+                    <a>Soups</a>
+                </div>
+                <div class="spicy" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/spicy.png"/>
+                    <a>Spicy</a>
+                </div>
+                <div class="vegetarian" href="/">
+                    <img class="img-responsive" src="/static/img/food%20icons/vegeterian.png"/>
+                    <a>Vegetarian</a>
+                </div>
+    </section>
+
+    <section class = "restaurant-list">
 
         {% for restaurant in restaurants %}
             <tr>
@@ -28,6 +87,7 @@
             </tr>
         {% endfor %}
 
+    </section>
 
-    {% endblock %}
+{% endblock %}
 </body>

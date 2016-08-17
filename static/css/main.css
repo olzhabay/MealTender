@@ -108,26 +108,15 @@ input[name=address] {
 
 .select-restaurant {
     background-color: #338C47;
+    border-radius: 2px;
     border-color: #338C47;
-    border-radius: 4px;
     background-image: none;
     margin-top: 20px;
     color: #FFFFFF;
     text-shadow: none;
     width: 200px;
     height: 40px;
-}
-
-.select-food {
-    border-radius: 4px;
-    background-color: #338C47;
-    border-color: #338C47;
-    background-image: none;
-    margin-top: 10px;
-    color: #FFFFFF;
-    text-shadow: none;
-    width: 200px;
-    height: 40px;
+    line-height: 42px;
 }
 
 section#Intro {

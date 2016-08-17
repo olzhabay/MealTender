@@ -1,0 +1,210 @@
+#category {
+    margin-top: 30px;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+
+.chicken, .beef, .bibimbab, .dduckbokgi, .fish, .HALAL, .noodle, .pizza, .meat, .rice, .soup, .spicy, .vegetarian {
+    height: 7%;
+    width: 7%;
+    display: inline-block;
+}
+.beef {
+    margin-left: 30px;
+}
+
+.beef a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 30px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.beef:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.chicken a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 20px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.chicken:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.bibimbab a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 15px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.bibimbab:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.dduckbokgi a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 10px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.dduckbokgi:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.fish a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 33px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.fish:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.HALAL a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 30px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.HALAL:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.noodle a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 20px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.noodle:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.pizza a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 30px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.pizza:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.meat a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 30px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.meat:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.rice a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 30px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.rice:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.rice a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 32px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.rice:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.soup a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 25px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.soup:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.spicy a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 25px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.spicy:active {
+  position: relative;
+  bottom: 2px;
+}
+
+.vegetarian a {
+    color: #7e7c7c;
+    text-align: center;
+    height: 28px;
+    margin-left: 15px;
+    font-size: .875rem;
+    font-family: DD-ProximaNova,ProximaNova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.vegetarian:active {
+  position: relative;
+  bottom: 2px;
+}
