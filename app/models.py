@@ -47,9 +47,7 @@ class AddressManager(models.Manager):
 class Address(models.Model):
     object_manager = AddressManager()
     street = models.CharField(max_length=100)
-    zip_code = models.CharField(max_length=10)
     city = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
     latitude = models.FloatField(editable=False)
     longitude = models.FloatField(editable=False)
 

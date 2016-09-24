@@ -26,4 +26,4 @@ class ProfileForm(forms.ModelForm):
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
-        fields = ('street', 'zip_code', 'city', 'country')
+        fields = ('street', 'city')
