@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
 
-import json as jsonlib
+import json
 import urllib2
 
-from django.db import models
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from MealTender.settings import GOOGLE_API_KEY, MEDIA_URL
 
@@ -17,61 +18,30 @@ class Profile(models.Model):
         return self.user.username
 
 
-class AddressManager(models.Manager):
-    def nearby(self, latitude, longitude, proximity):
-        """
-        Return all object which distance to specified coordinates
-        is less than proximity given in kilometers
-        """
-        # Great circle distance formula
-        gcd = """
-              6371 * acos(
-               cos(radians(%s)) * cos(radians(latitude))
-               * cos(radians(longitude) - radians(%s)) +
-               sin(radians(%s)) * sin(radians(latitude))
-              )
-              """
-        gcd_lt = "{} < %s".format(gcd)
-        return self.get_queryset() \
-            .exclude(latitude=None) \
-            .exclude(longitude=None) \
-            .extra(
-            select={'distance': gcd},
-            select_params=[latitude, longitude, latitude],
-            where=[gcd_lt],
-            params=[latitude, longitude, latitude, proximity],
-            order_by=['distance']
-        )
-
-
-class Address(models.Model):
-    object_manager = AddressManager()
+class Restaurant(models.Model):
+    name = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
-    latitude = models.FloatField(editable=False)
-    longitude = models.FloatField(editable=False)
+    latlng = models.PointField(null=False, blank=False, srid=4326, verbose_name="Location")
+    menu = models.ManyToManyField('Food')
+    image = models.ImageField(upload_to=MEDIA_URL, blank=True, null=True)
 
     def save(self):
         location = "%s %s" % (self.street, self.city)
         location = location.replace(" ", "+")
-        if not self.latitude or not self.longitude:
+        if not self.latlng:
             self.geocode(location)
-        super(Address, self).save()
+        super(Restaurant, self).save()
 
     def geocode(self, location):
         url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s" % (location, GOOGLE_API_KEY)
         response = urllib2.urlopen(url)
-        data = jsonlib.load(response)
+        data = json.load(response)
         if data['status'] == 'OK':
-            self.latitude = data['results'][0]['geometry']['location']['lat']
-            self.longitude = data['results'][0]['geometry']['location']['lng']
-
-
-class Restaurant(models.Model):
-    name = models.CharField(max_length=100)
-    address = models.ForeignKey('Address', blank=True, null=True)
-    menu = models.ManyToManyField('Food')
-    image = models.ImageField(upload_to=MEDIA_URL, blank=True, null=True)
+            latitude = data['results'][0]['geometry']['location']['lat']
+            longitude = data['results'][0]['geometry']['location']['lng']
+            latlng = Point(latitude, longitude)
+            self.latlng = latlng
 
     def __unicode__(self):
         return self.name
@@ -104,7 +74,7 @@ class Order(models.Model):
     customer = models.ForeignKey('Profile', blank=True, null=True)
     total_price = models.IntegerField()
     food_list = models.ManyToManyField('Food')
-    shipping_address = models.ForeignKey('Address', blank=True, null=True)
+    shipping_address = models.CharField(max_length=100)
 
     def __unicode__(self):
         return self.customer.user.username

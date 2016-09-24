@@ -70,6 +70,7 @@
                     <a>Vegetarian</a>
                 </div>
     </section>
+    {% if found %}
     <section class = "restaurant-list">
         {% for restaurant in restaurants %}
             <tr>
@@ -82,6 +83,9 @@
         {% endfor %}
 
     </section>
+    {% else %}
+        <h2>Not found. Sorry T_T</h2>
+    {% endif %}
 
 {% endblock %}
 </body>

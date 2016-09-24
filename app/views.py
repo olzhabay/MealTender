@@ -1,14 +1,20 @@
 from __future__ import print_function
 import datetime
+import urllib2
 
-import requests
+import json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.gis.geos import Point
+from django.contrib.gis.measure import Distance
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, render_to_response
 from django.template.context import RequestContext
-from app.forms.user_forms import UserForm, ProfileForm, AddressForm, UserFormEdit
-from app.models import Profile, Food, Restaurant, Address
+from django.contrib.gis.geos import *
+from django.contrib.gis.measure import D
+from MealTender.settings import GOOGLE_API_KEY
+from app.forms.user_forms import UserForm, ProfileForm, UserFormEdit
+from app.models import Profile, Food, Restaurant
 from django.contrib.auth.models import User
 from carton.cart import Cart
 
@@ -53,13 +59,8 @@ def profile(request):
         profile = Profile.objects.get(user=user)
     except:
         profile = None
-    try:
-        address = Address.objects.get(pk=profile.address_id)
-    except:
-        address = None
-
     return render_to_response('app/profile.html',
-                              {'user': user, 'profile': profile, 'address': address},
+                              {'user': user, 'profile': profile},
                               context)
 
 
@@ -72,30 +73,20 @@ def edit_profile(request):
         profile = Profile.objects.get(user=user)
     except:
         profile = None
-    try:
-        address = Address.objects.get(pk=profile.address_id)
-    except:
-        address = None
     user_form = UserFormEdit(instance=user)
     profile_form = ProfileForm(instance=profile)
-    address_form = AddressForm(instance=address)
     if request.method == 'POST':
         user_form = UserFormEdit(data=request.POST, instance=user)
         profile_form = ProfileForm(data=request.POST, instance=profile)
-        address_form = AddressForm(data=request.POST, instance=address)
-        if user_form.is_valid() and profile_form.is_valid() and address_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.save()
-            address = address_form.save()
-            address.save()
             profile = profile_form.save(commit=False)
             profile.user = User.objects.get(pk=user.pk)
-            profile.address = Address.objects.get(pk=address.pk)
             profile.save()
             edited = True
     return render_to_response('app/profile_edit.html',
-                              {'user_form': user_form, 'profile_form': profile_form, 'address_form': address_form,
-                               'edited': edited},
+                              {'user_form': user_form, 'profile_form': profile_form, 'edited': edited},
                               context)
 
 
@@ -143,28 +134,27 @@ def view_orders(request):
 def search(request):
     context = RequestContext(request)
     if request.method == 'POST':
-        restaurants = Restaurant.objects.all()
-        return render_to_response('app/restaurant_list.html', {'restaurants': restaurants}, context)
+        address = request.POST['address']
+        address = address.replace(" ", "+")
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s" % (address, GOOGLE_API_KEY)
+        response = urllib2.urlopen(url)
+        data = json.load(response)
+        if data['status'] == 'OK':
+            latitude = data['results'][0]['geometry']['location']['lat']
+            longitude = data['results'][0]['geometry']['location']['lng']
+            ref_location = Point(latitude, longitude)
+            ref_distance = 5000
+            restaurants = Restaurant.objects.filter(latlng__distance_lt=(ref_location, Distance(km=ref_distance)))
+            if restaurants.count() > 0:
+                return render_to_response('app/restaurant_list.html',
+                                          {'restaurants': restaurants, 'found': True},
+                                          context)
+        return render_to_response('app/restaurant_list.html',
+                                  {'restaurants': None, 'found': False},
+                                  context)
 
-        #address = request.POST['address']
-        #address = address.replace(" ", "+")
-        #url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s" % (address, GOOGLE_API_KEY)
-        #response = urllib2.urlopen(url)
-        #data = jsonlib.load(response)
-        #if data['status'] == 'OK':
-        #    latitude = data['results'][0]['geometry']['location']['lat']
-        #    longitude = data['results'][0]['geometry']['location']['lng']
-        #    restaurants = Restaurant.address.object_manager.nearby(longitude, latitude, 5)
-        #    if restaurants.size == 0:
-        #        return render_to_response('app/restaurant_list.html',
-        #                                  {'restaurants': restaurants, 'found': True},
-        #                                  context)
-        #return render_to_response('app/restaurant_list.html',
-        #                         {'restaurants': None, 'found': False},
-        #                          context)
 
-
-def food_list(request, value=None, address=None):
+def food_list(request, value=None):
     context = RequestContext(request)
     if value is None:
         foods = Food.objects.all()

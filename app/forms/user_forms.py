@@ -1,4 +1,4 @@
-from app.models import Profile, Address
+from app.models import Profile
 from django.contrib.auth.models import User
 from django import forms
 
@@ -21,9 +21,3 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('phone_number',)
-
-
-class AddressForm(forms.ModelForm):
-    class Meta:
-        model = Address
-        fields = ('street', 'city')
