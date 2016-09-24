@@ -50,14 +50,14 @@ html, body {
 }
 
 footer {
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #338C47;
-  text-align: center;
-  color: #FFFFFF;
-  font-size:100%;
-  margin: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #338C47;
+    text-align: center;
+    color: #FFFFFF;
+    font-size:100%;
+    margin: 0;
     height: 70px;
     //margin-top: 70px;
     //position: absolute;
@@ -68,7 +68,7 @@ footer .footer {
 }
 
 .contact-btn {
-  float: right;
+    float: right;
     position: relative;
     top: 25px;
 }
@@ -86,9 +86,13 @@ footer .footer {
 }
 
 input[name=address] {
-      width: 446px;
-      border: 2.5px solid #338C47;
-      background-color: rgba(255, 255, 255, 0.82);
+    width: 446px;
+    border: 2.5px solid #338C47;
+    background-color: rgba(255, 255, 255, 0.82);
+}
+
+input[name=address]:focus {
+    border: 2.5px solid #333333;
 }
 
 .address-type p {
