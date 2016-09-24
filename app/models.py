@@ -2,10 +2,10 @@ from __future__ import unicode_literals
 
 import json as jsonlib
 import urllib2
-from django.core.serializers import json
+
 from django.db import models
 from django.contrib.auth.models import User
-from MealTender.settings import GOOGLE_API_KEY
+from MealTender.settings import GOOGLE_API_KEY, MEDIA_URL
 
 
 class Profile(models.Model):
@@ -71,7 +71,7 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     address = models.ForeignKey('Address', blank=True, null=True)
     menu = models.ManyToManyField('Food')
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to=MEDIA_URL, blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -94,7 +94,7 @@ class Food(models.Model):
     servings = models.IntegerField(default=1)
     price = models.IntegerField(default=0)
     ingredients = models.CharField(max_length=250)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to=MEDIA_URL, blank=True, null=True)
 
     def __unicode__(self):
         return self.name

@@ -133,3 +133,5 @@ STATICFILES_DIRS = [
 ]
 
 GOOGLE_API_KEY = "AIzaSyDXlqoqeslLYyQUzNkWvGf2awyTdRtOz0Y"
+
+MEDIA_URL = 'media/'

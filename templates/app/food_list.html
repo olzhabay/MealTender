@@ -3,6 +3,7 @@
 {% block content %}
     <table style="border: medium; width: 100%">
     <tr>
+        <th> </th>
         <th>Name</th>
         <th>Servings</th>
         <th>Price</th>
@@ -10,6 +11,7 @@
     </tr>
     {% for food in foods %}
         <tr>
+            <th><img src="/{{ food.image }}"></th>
             <th>{{ food.name }}</th>
             <th>{{ food.servings }}</th>
             <th>{{ food.price }}</th>

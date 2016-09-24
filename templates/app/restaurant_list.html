@@ -73,7 +73,7 @@
     <section class = "restaurant-list">
         {% for restaurant in restaurants %}
             <tr>
-                <th>{{ restaurant.image }}</th>
+                <th><img src="/{{ restaurant.image }}"></th>
                 <th>{{ restaurant.name }}</th>
                 <th>
                     <a href="{% url 'food_list' restaurant.pk %}">See Menu</a>
