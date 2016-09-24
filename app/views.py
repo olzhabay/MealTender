@@ -185,7 +185,7 @@ def add_to_cart(request):
     cart = Cart(request.session)
     food = Food.objects.get(id=request.GET.get('food_id'))
     cart.add(food, price=food.price)
-    return HttpResponse("Added")
+    return HttpResponseRedirect('/cart/show/')
 
 
 def remove_from_cart(request):

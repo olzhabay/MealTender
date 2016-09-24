@@ -1,0 +1,43 @@
+
+body {
+    background-color: #f7f7f7;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding-bottom: 0;
+    //margin-top: -51px;
+    padding-top:0;
+}
+
+html, body {
+    height: 100%;
+}
+
+.table {
+    width: 400px;
+}
+
+.cart-page {
+    border-radius: 3px;
+    margin: 60px auto;
+    width: 400px;
+    background-color: #fff;
+    padding: 24px;
+    white-space: nowrap;
+    letter-spacing: .015625em;
+    box-sizing: inherit;
+    position: relative;;
+}
+
+.car-page div.container {
+    width: 100%;
+}
+.order-button {
+    border-radius: 4px;
+    border-color: #338C47;
+    background: #338C47 none;
+    margin-top: 30px;
+    color: #FFFFFF;
+    text-shadow: none;
+    width: 400px;
+    height: 40px;
+}

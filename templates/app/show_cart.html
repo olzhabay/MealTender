@@ -1,13 +1,45 @@
 {% extends "app/main_template.html" %}
 {% block title %} Cart {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/show_cart.css">
+{% endblock %}
 {% block content %}
     {% load carton_tags %}
     {% get_cart as cart %}
+    <section class = "cart-page">
+        <div class="container">
+            <table class="table">
+                <tr>
+                    <th>Product name</th>
+                    <th>#Servings</th>
+                    <th>Subtotal($)</th>
+                </tr>
+                {% for item in cart.items %}
+                    <tr>
+                        <th>
+                             {{ item.product.name }}
 
-    {% for item in cart.items %}
-        {{ item.product.name }}
-        {{ item.quantity }}
-        {{ item.subtotal }}
-    {% endfor %}
+                        </th>
+                        <th>
+                            {{ item.quantity }}
+                        </th>
+                        <th>
+                             {{ item.subtotal }}
+                        </th>
+                    </tr>
 
+                {% endfor %}
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Total: {{ cart.total }}</th>
+            </tr>
+            </table>
+
+            <div>
+               <button type="submit" class="order-button">Make an Order
+               </button>
+            </div>
+        </div>
+    </section>
 {% endblock %}

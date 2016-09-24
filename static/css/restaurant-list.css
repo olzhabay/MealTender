@@ -5,8 +5,8 @@
 }
 
 .chicken, .beef, .bibimbab, .dduckbokgi, .fish, .HALAL, .noodle, .pizza, .meat, .rice, .soup, .spicy, .vegetarian {
-    height: 7%;
-    width: 7%;
+    height: 70%;
+    width: 70%;
     display: inline-block;
 }
 .beef {
@@ -207,6 +207,9 @@
 .vegetarian:active {
   position: relative;
   bottom: 2px;
+}
+.restaurant-pic{
+    width: 60px;
 }
 
 #restaurant-menu {

@@ -2,15 +2,26 @@
 {% block title %} List of food {% endblock %}
 {% block content %}
     <table class="table" style="border: medium; width: 100%">
-
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Servings</th>
+        <th>Price($)</th>
+        <th>Ingredients</th>
+        <th></th>
+    </tr>
     {% for food in foods %}
         <tr>
+            <th> <img class="img-responsive" width="100" height="100" src="/{{ food.image }}"/></th>
             <th>{{ food.name }}</th>
             <th>{{ food.servings }}</th>
             <th>{{ food.price }}</th>
             <th>{{ food.ingredients }}</th>
-            <th><a href="/cart/add/?food_id={{ food.pk }}">Add</a> </th>
+            <th><a href="/cart/add/?food_id={{ food.pk }}"><button type="button" class="btn btn-default">Add to Cart</button></a></th>
         </tr>
     {% endfor %}
     </table>
+
+
+
 {% endblock %}

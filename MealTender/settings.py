@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'app',
     'carton',
 ]
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'MealTender.wsgi.application'
 
 DATABASES = {
    'default': {
-      'ENGINE': 'django.db.backends.postgresql',
+      'ENGINE': 'django.contrib.gis.db.backends.postgis',
       'NAME': 'meal_tender_db',
       'USER': 'postgres',
       'PASSWORD': 'java2ee',
@@ -133,3 +134,5 @@ STATICFILES_DIRS = [
 ]
 
 GOOGLE_API_KEY = "AIzaSyDXlqoqeslLYyQUzNkWvGf2awyTdRtOz0Y"
+
+MEDIA_URL = 'media/'
