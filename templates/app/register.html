@@ -11,9 +11,8 @@
     <section class = "register-page">
         <div class="container">
             {% if registered %}
-                App says: <strong> Thank you for registering!</strong>
+                Thank you for registering!
             {% else %}
-                App says: <strong> Please register</strong>
             <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
                 <h2 class="form-signin-heading">Create account
                 </h2>
@@ -28,6 +27,7 @@
                 <button type="submit" name="submit" class="create-account">Create my account</button>
 
             </form>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

@@ -12,7 +12,7 @@
         <link href="{% static '/css/main.css' %}" rel="stylesheet">
         {% block script %} {% endblock %}
         {% block head %} {% endblock %}
-        <title>MealTender - {% block title %}Eat Korean Food Selectively!{% endblock %}</title>
+        <title>MealTender - {% block title %}Explore Variety of Food in Korea!{% endblock %}</title>
 
     </head>
 
@@ -26,7 +26,7 @@
                    {% if user.is_authenticated %}
                        <li class="navbar-text">Welcome, {{ user.username }}!</li>
                        <li><a class="navbar-link" href="/profile/">Your profile</a></li>
-                       <li><a class="navbar-link" href="/show_cart/">Cart</a></li>
+                       <li><a class="navbar-link" href="/cart/show/">Cart</a></li>
                        <li><a class="navbar-link" href="/logout/">Logout</a></li>
                    {% else %}
                         <li><a class="navbar-link" href="/register/">Register </a></li>
@@ -55,7 +55,7 @@
 
              <div class="contact-btn"><a>Contact</a> </div>
 
-             <div class="footer"> &copy; MealTender: Explore Korean Food Selectively, 2016 </div>
+             <div class="footer"> &copy; MealTender: Explore Variety of Food in Korea, 2016 </div>
 
     </footer>
 
