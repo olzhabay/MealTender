@@ -7,6 +7,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from MealTender.settings import GOOGLE_API_KEY
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User)
     phone_number = models.IntegerField()
@@ -16,16 +17,44 @@ class Profile(models.Model):
         return self.user.username
 
 
+class AddressManager(models.Manager):
+    def nearby(self, latitude, longitude, proximity):
+        """
+        Return all object which distance to specified coordinates
+        is less than proximity given in kilometers
+        """
+        # Great circle distance formula
+        gcd = """
+              6371 * acos(
+               cos(radians(%s)) * cos(radians(latitude))
+               * cos(radians(longitude) - radians(%s)) +
+               sin(radians(%s)) * sin(radians(latitude))
+              )
+              """
+        gcd_lt = "{} < %s".format(gcd)
+        return self.get_queryset() \
+            .exclude(latitude=None) \
+            .exclude(longitude=None) \
+            .extra(
+            select={'distance': gcd},
+            select_params=[latitude, longitude, latitude],
+            where=[gcd_lt],
+            params=[latitude, longitude, latitude, proximity],
+            order_by=['distance']
+        )
+
+
 class Address(models.Model):
+    object_manager = AddressManager()
     street = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=10)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    lat = models.FloatField(editable=False)
-    lng = models.FloatField(editable=False)
+    latitude = models.FloatField(editable=False)
+    longitude = models.FloatField(editable=False)
 
     def save(self):
-        location = '+'.join(filter(None, (self.street, self.city, self.country)))
+        location = "%s %s %s" % (self.street, self.city, self.country)
         location = location.replace(" ", "+")
         if not self.lat or not self.lng:
             self.geocode(location)

@@ -3,7 +3,7 @@
 {% block title %} Index page {% endblock %}
 
 {% block script %}
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places" async defer></script>
     <script>
     function initialize() {
         var defaultBounds = new google.maps.LatLngBounds(
@@ -27,8 +27,8 @@
     <section class = "search-page">
         <div class = "container">
          <div class="row text-center">
-              <h1 class="text-center">Korean Food For You</h1>
-              <h4 class="text-center"> Explore and order best of korean food with us </h4>
+              <h1 class="text-center">Choose the best</h1>
+              <h4 class="text-center"> Explore and order variety of food with us </h4>
                  <div class="address-type">
                     <form class= "center" id="search-form" method="post" action="/search/">
                         {% csrf_token %}
@@ -42,8 +42,6 @@
                                <button type="submit" class="select-restaurant" name="select-restaurant">Find Restaurants
                                </button>
                            </ul>
-                  <!--         <ul><button type="submit" class="select-food" name="select-food">Find Food</button> </ul>
-                      -->
                         </nav>
                     </form>
                 </div>

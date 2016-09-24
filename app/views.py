@@ -1,15 +1,19 @@
 from __future__ import print_function
-import datetime
 
-import requests
+import datetime
+import json as jsonlib
+import urllib2
+
+from carton.cart import Cart
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, RequestContext, render_to_response
+
+from MealTender.settings import GOOGLE_API_KEY
 from app.forms.user_forms import UserForm, ProfileForm, AddressForm, UserFormEdit
 from app.models import Profile, Food, Restaurant, Address
-from django.contrib.auth.models import User
-from carton.cart import Cart
 
 
 # general view
@@ -149,11 +153,22 @@ def search(request):
             foods = Food.objects.all()
             return render_to_response('app/food_list.html', {'foods': foods}, context)
 
-
-def restaurant_list(request, address=None):
-    context = RequestContext(request)
-    restaurants = Restaurant.objects.all()
-    return render_to_response('app/restaurant_list.html', {'restaurants': restaurants}, context)
+        #address = request.POST['address']
+        #address = address.replace(" ", "+")
+        #url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s" % (address, GOOGLE_API_KEY)
+        #response = urllib2.urlopen(url)
+        #data = jsonlib.load(response)
+        #if data['status'] == 'OK':
+        #    latitude = data['results'][0]['geometry']['location']['lat']
+        #    longitude = data['results'][0]['geometry']['location']['lng']
+        #    restaurants = Restaurant.address.object_manager.nearby(longitude, latitude, 5)
+        #    if restaurants.size == 0:
+        #        return render_to_response('app/restaurant_list.html',
+        #                                  {'restaurants': restaurants, 'found': True},
+        #                                  context)
+        #return render_to_response('app/restaurant_list.html',
+        #                         {'restaurants': None, 'found': False},
+        #                          context)
 
 
 def food_list(request, value=None, address=None):

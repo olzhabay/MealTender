@@ -15,7 +15,6 @@
 
 <body>
 {% block content %}
-
     <section id="category">
                 <div class="beef" href="/">
                     <img class="img-responsive" src="/static/img/food%20icons/beef.png"/>
@@ -71,17 +70,11 @@
                     <a>Vegetarian</a>
                 </div>
     </section>
-
-
     <section class = "restaurant-list">
-
         {% for restaurant in restaurants %}
             <tr>
+                <th>{{ restaurant.image }}</th>
                 <th>{{ restaurant.name }}</th>
-                <th>
-                    {{ restaurant.address.street }}
-                    {{ restaurant.address.zip_code }}
-                </th>
                 <th>
                     <a href="{% url 'food_list' restaurant.pk %}">See Menu</a>
                 </th>

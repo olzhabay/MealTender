@@ -16,6 +16,5 @@ urlpatterns = [
     url(r'^cart/add/$', views.add_to_cart, name='add_to_cart'),
     url(r'^food_list/$', views.food_list, name='food_list'),
     url(r'^food_list/(\d+)/$', views.food_list, name='food_list'),
-    url(r'^restaurant_list/$', views.restaurant_list, name='restaurant_list'),
     url(r'^search/$', views.search, name='search')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
