@@ -94,9 +94,7 @@ input[name=address] {
 .address-type p {
     text-align: left;
     width: 463px;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin: 30px auto 10px;
 
     align-self: flex-start;
     color: inherit;
@@ -106,20 +104,16 @@ input[name=address] {
     text-transform: uppercase;
 }
 
-.select-restaurant {
-    background-color: #338C47;
-    border-radius: 2px;
+.address-form button{
     border-color: #338C47;
-    background-image: none;
-    margin-top: 20px;
+    background: #338C47 none;
     color: #FFFFFF;
     text-shadow: none;
     width: 200px;
     height: 40px;
-    line-height: 42px;
 }
 
-section#Intro {
+section#intro {
     height: 150px;
 }
 
@@ -127,43 +121,38 @@ section#Intro {
     font-size: 15px;
 }
 
-.LearnMore {
+.learn-more {
     margin-top: 60px;
     float: left;
     width: 50%;
 }
 
-.LearnMore button {
+.learn-more button {
     width: 200px;
     margin-right: 50px;
     float: right;
-
-    background-color: #FFFFFF;
     border-color: #338C47;
     border-radius: 4px;
-    background-image: none;
+    background: #FFFFFF none;
     color: #338C47;
     text-shadow: none;
-    width: 200px;
     height: 44px;
 
 }
-.Download {
+.download {
     margin-top: 60px;
     float: right;
     width: 50%;
 }
 
-.Download button {
+.download button {
     width: 200px;
     margin-left: 50px;
     float: left;
-    background-color: #FFFFFF;
     border-color: #338C47;
     border-radius: 4px;
-    background-image: none;
+    background: #FFFFFF none;
     color: #338C47;
     text-shadow: none;
-    width: 200px;
     height: 44px;
 }

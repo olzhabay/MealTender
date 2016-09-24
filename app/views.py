@@ -5,7 +5,8 @@ import requests
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, HttpResponse, RequestContext, render_to_response
+from django.shortcuts import render, HttpResponse, render_to_response
+from django.template.context import RequestContext
 from app.forms.user_forms import UserForm, ProfileForm, AddressForm, UserFormEdit
 from app.models import Profile, Food, Restaurant, Address
 from django.contrib.auth.models import User
@@ -142,12 +143,8 @@ def view_orders(request):
 def search(request):
     context = RequestContext(request)
     if request.method == 'POST':
-        if 'select-restaurant' in request.POST:
-            restaurants = Restaurant.objects.all()
-            return render_to_response('app/restaurant_list.html', {'restaurants': restaurants}, context)
-        else:
-            foods = Food.objects.all()
-            return render_to_response('app/food_list.html', {'foods': foods}, context)
+        restaurants = Restaurant.objects.all()
+        return render_to_response('app/restaurant_list.html', {'restaurants': restaurants}, context)
 
         #address = request.POST['address']
         #address = address.replace(" ", "+")
