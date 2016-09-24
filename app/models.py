@@ -52,9 +52,9 @@ class Address(models.Model):
     longitude = models.FloatField(editable=False)
 
     def save(self):
-        location = "%s %s %s" % (self.street, self.city, self.country)
+        location = "%s %s" % (self.street, self.city)
         location = location.replace(" ", "+")
-        if not self.lat or not self.lng:
+        if not self.latitude or not self.longitude:
             self.geocode(location)
         super(Address, self).save()
 
@@ -63,8 +63,8 @@ class Address(models.Model):
         response = urllib2.urlopen(url)
         data = jsonlib.load(response)
         if data['status'] == 'OK':
-            self.lat = data['results'][0]['geometry']['location']['lat']
-            self.lng = data['results'][0]['geometry']['location']['lng']
+            self.latitude = data['results'][0]['geometry']['location']['lat']
+            self.longitude = data['results'][0]['geometry']['location']['lng']
 
 
 class Restaurant(models.Model):
