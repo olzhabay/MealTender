@@ -208,3 +208,12 @@
   position: relative;
   bottom: 2px;
 }
+
+#restaurant-menu {
+    border-color: #338C47;
+    background: #338C47 none;
+    color: #FFFFFF;
+    text-shadow: none;
+    width: 200px;
+    height: 40px;
+}

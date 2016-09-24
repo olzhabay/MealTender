@@ -1,13 +1,8 @@
 {% extends "app/main_template.html" %}
 {% block title %} List of food {% endblock %}
 {% block content %}
-    <table style="border: medium; width: 100%">
-    <tr>
-        <th>Name</th>
-        <th>Servings</th>
-        <th>Price</th>
-        <th>Ingredients</th>
-    </tr>
+    <table class="table" style="border: medium; width: 100%">
+
     {% for food in foods %}
         <tr>
             <th>{{ food.name }}</th>

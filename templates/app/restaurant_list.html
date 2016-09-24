@@ -6,11 +6,6 @@
 {% block head %}
     <link rel="stylesheet" type="text/css" href="/static/css/restaurant-list.css">
     <script src="{% static 'js/jquery-3.1.0.js' %}"></script>
-
-    <script
-            type='text/javascript' src="/static/js/restaurant-list.js">
-    </script>
-
 {% endblock %}
 
 <body>
@@ -70,18 +65,34 @@
                     <a>Vegetarian</a>
                 </div>
     </section>
-    <section class = "restaurant-list">
-        {% for restaurant in restaurants %}
-            <tr>
-                <th>{{ restaurant.image }}</th>
-                <th>{{ restaurant.name }}</th>
-                <th>
-                    <a href="{% url 'food_list' restaurant.pk %}">See Menu</a>
-                </th>
-            </tr>
-        {% endfor %}
+        <script type='text/javascript' src="/static/js/restaurant-list.js">
+    </script>
 
-    </section>
+    <div class="table-responsive">
+        <table class="table" style="border: medium; width: 100%">
+            {% for restaurant in restaurants %}
+                <tr>
+                    <th>
+                        <a href="{% url 'food_list' restaurant.pk %}">
+                            <div class = "restaurant-pic"><img class="img-responsive" src="{ restaurant.image }}"/></div>
+                        </a>
+                    </th>
+
+                    <th>{{ restaurant.name }}</th>
+
+                    <th>
+                        <a href="{% url 'food_list' restaurant.pk %}">See Menu</a>
+                    </th>
+                </tr>
+                </br>
+                </br>
+
+
+            {% endfor %}
+        </table>
+    </div>
+
+
 
 {% endblock %}
 </body>
